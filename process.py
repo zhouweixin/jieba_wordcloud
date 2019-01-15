@@ -1,8 +1,8 @@
 import os
 import jieba
 import re
-import json
 import pandas as pd
+import json
 
 
 roots = ['一带一路', '互联网金融', '西部大开发']
@@ -31,4 +31,6 @@ for root in roots:
     data = pd.DataFrame({'word': pd.Series(list(word2num.keys())), 'num': pd.Series(list(word2num.values()))})
     filename = root + '.csv'
     data.to_csv(filename, encoding='gbk')
+    json.dump(word2num, open(root + '.json', 'w'))
+
     print("完成: " + filename)
